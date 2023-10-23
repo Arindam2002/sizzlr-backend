@@ -196,5 +196,4 @@ canteenRouter.patch('/api/update-menu-item/:canteen_id', async (req, res) => {
     }
 });
 
-
 module.exports = canteenRouter;

@@ -7,6 +7,7 @@ const authRouter = require("./routes/auth");
 const canteenRouter = require("./routes/canteen");
 const ordersRouter = require("./routes/orders");
 const updateRouter = require("./routes/updateDetails");
+const categoryRouter = require("./routes/category");
 
 // INITIALIZATION
 const PORT = process.env.PORT || 3000;
@@ -19,6 +20,7 @@ app.use(canteenRouter);
 app.use(authRouter);
 app.use(ordersRouter);
 app.use(updateRouter);
+app.use(categoryRouter);
 
 // CONNECT TO MONGODB
 mongoose.connect(DB).then(() => {
