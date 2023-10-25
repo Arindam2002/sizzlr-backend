@@ -1,6 +1,7 @@
 // IMPORTS FROM PACKAGES
 const express = require("express");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv").config();
 
 // IMPORT FROM FILES
 const authRouter = require("./routes/auth");
@@ -12,7 +13,7 @@ const categoryRouter = require("./routes/category");
 // INITIALIZATION
 const PORT = process.env.PORT || 8080;
 const app = express();
-const DB = "mongodb+srv://sizzlr:Alohmora%4020@sizzlr-cluster-0.i1w2lfj.mongodb.net/?retryWrites=true&w=majority"
+// const DB = "mongodb+srv://sizzlr:Alohmora%4020@sizzlr-cluster-0.i1w2lfj.mongodb.net/?retryWrites=true&w=majority"
 
 // MIDDLEWARE
 app.use(express.json());
@@ -23,7 +24,7 @@ app.use(updateRouter);
 app.use(categoryRouter);
 
 // CONNECT TO MONGODB
-mongoose.connect(DB).then(() => {
+mongoose.connect(process.env.DB).then(() => {
     console.log('Connected to MongoDB');
 }).catch((err) => {
     console.log(`ERROR CONNECTING TO MongoDB: ${err}`);

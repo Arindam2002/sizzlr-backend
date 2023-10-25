@@ -6,7 +6,7 @@ const authRouter = express.Router();
 
 authRouter.post('/api/auth/signup', async (req, res) => {
     try { 
-        const { name, email, password , contact, role} = req.body;
+        const { firebase_uid, name, email, password , contact, role} = req.body;
         const existingUser = await User.findOne({ email });
 
         if (existingUser) {
@@ -21,7 +21,9 @@ authRouter.post('/api/auth/signup', async (req, res) => {
                 return res.status(500).json({ message: err.message });
             }
 
+
             let newUser = new User({ 
+                firebase_uid,
                 name,
                 email,
                 password: hashedPassword,
