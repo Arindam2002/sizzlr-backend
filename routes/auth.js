@@ -32,7 +32,7 @@ authRouter.post('/api/auth/signup', async (req, res) => {
             });
             newUser = await newUser.save();
 
-            res.json({
+            res.status(201).json({
                 success: true,
                 message: 'User created',
                 data: newUser
