@@ -1,9 +1,0 @@
-steps:
-  # Docker Build
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/glassy-hue-402706/sizzlr-backend:$SHORT_SHA', '.']
-
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/glassy-hue-402706/sizzlr-backend:$SHORT_SHA']
-  
-           
