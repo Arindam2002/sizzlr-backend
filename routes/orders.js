@@ -7,7 +7,7 @@ const User = require('../models/user');
 // Route for placing an order by a customer to a canteen
 ordersRouter.post('/api/place-order', async (req, res) => {
     try {
-        const { customerId, canteenId, items } = req.body;
+        const { customerId, canteenId, canteenName, items } = req.body;
 
         // Calculate the total amount of the order
         let total = 0;
@@ -28,6 +28,7 @@ ordersRouter.post('/api/place-order', async (req, res) => {
         const order = new Order({
             customerId,
             canteenId,
+            canteenName,
             items,
             total,
             payment: payment
@@ -42,7 +43,7 @@ ordersRouter.post('/api/place-order', async (req, res) => {
 
             // Add the order to the customer's order history
             customer.order_history.push(order);
-            await customer.save();
+            await customer.save().then(() => console.log('Order added to customer'));
 
         } catch (error) {
             console.log(error.message);
@@ -83,6 +84,23 @@ ordersRouter.get('/api/get-order-history-customer/:customer_id', async (req, res
             success: true,
             message: 'Listed order history for the customer',
             data: orders
+        });
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            error: err.message
+        });
+    }
+});
+
+ordersRouter.get('/api/get-order-history/:customer_id', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.customer_id).populate({path: 'order_history'});
+
+        res.json({
+            success: true,
+            message: 'Listed order history for the customer',
+            data: user.order_history
         });
     } catch (err) {
         res.status(500).json({

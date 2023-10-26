@@ -6,6 +6,10 @@ const orderItemSchema = new mongoose.Schema({
         ref: 'MenuItem',
         required: true
     },
+    item_name: {
+        type: String,
+        required: true
+    },
     quantity: {
         type: Number,
         required: true

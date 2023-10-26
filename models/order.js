@@ -13,6 +13,10 @@ const orderSchema = new mongoose.Schema({
         ref: 'Canteen',
         required: true
     },
+    canteenName: {
+        type: String,
+        required: true
+    },
     items: {
         type: [OrderItem.schema],
         required: true
