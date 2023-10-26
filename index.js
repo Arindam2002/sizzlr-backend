@@ -1,7 +1,8 @@
 // IMPORTS FROM PACKAGES
 const express = require("express");
 const mongoose = require("mongoose");
-const dotenv = require("dotenv").config();
+const dotenv = require("dotenv");
+dotenv.config();
 
 // IMPORT FROM FILES
 const authRouter = require("./routes/auth");
