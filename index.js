@@ -12,7 +12,7 @@ const updateRouter = require("./routes/updateDetails");
 const categoryRouter = require("./routes/category");
 
 // INITIALIZATION
-const PORT = process.env.PORT || 8080;
+const PORT = parseInt(process.env.PORT) || 8080;
 const app = express();
 // const DB = "mongodb+srv://sizzlr:Alohmora%4020@sizzlr-cluster-0.i1w2lfj.mongodb.net/?retryWrites=true&w=majority"
 
